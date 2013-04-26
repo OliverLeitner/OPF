@@ -5,6 +5,7 @@
 SCRIPT_DIR="./"
 RAGE_CACHE="../cache/tvrage_data.xml"
 PHP_PATH=`which php`
+#the following you may want to change to your needs...
 PHP_INI="/etc/php5/cli/php.ini"
 
 #first we cleanup leftovers
