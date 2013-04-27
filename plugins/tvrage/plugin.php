@@ -20,9 +20,9 @@ $data = array(
 //you can overwrite errors too, by using existing names from
 //languages/DEFAULT_LANG/errors.php
 $customErrors = array(
-	"tvrage_quickschedule_error" => "Unable to read from ".DEFAULT_FEED,
-	"tvrage_details_error" => "Unable to read from ".DEFAULT_DETAILS,
-	"tvrage_country_missing" => "Unable to find DEFAULT_COUNTRY"
+	"tvrage_quickschedule_error" => "Unable to read from ".TVRAGE_FEED,
+	"tvrage_details_error" => "Unable to read from ".TVRAGE_DETAILS,
+	"tvrage_country_missing" => "Unable to find ".TVRAGE_COUNTRY
 );
 $errorsArray = array_merge($errorsArray,$customErrors);
 

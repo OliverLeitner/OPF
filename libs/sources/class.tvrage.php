@@ -5,9 +5,9 @@
  * @author	Oliver Leitner <Shadow333[AT]gmail.com>
  */
 //some params for tvrage source...
-define('DEFAULT_FEED','http://services.tvrage.com/tools/quickschedule.php');
-define('DEFAULT_DETAILS','http://services.tvrage.com/feeds/episodeinfo.php');
-define('DEFAULT_COUNTRY', 'USA');
+define('TVRAGE_FEED','http://services.tvrage.com/tools/quickschedule.php');
+define('TVRAGE_DETAILS','http://services.tvrage.com/feeds/episodeinfo.php');
+define('TVRAGE_COUNTRY', 'USA');
 
 class RAGE {
 
