@@ -91,11 +91,7 @@ class dynamicLoader {
 		
 		$ret_src = array();
 		foreach($sources AS $key => $value){
-			if($shell === FALSE){
-				$ret_src[] = "libs/sources/class.".$value.".php";
-			} else {
-                                $ret_src[] = "../../libs/sources/class.".$value.".php";
-			}
+			$ret_src[] = "libs/sources/class.".$value.".php";
 		}
 		return $ret_src;
 	}

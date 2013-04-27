@@ -22,12 +22,7 @@ $data_con = new OPF\Core\CON();
 $dynamic = new OPF\Core\dynamicLoader();
 
 //include all sources as requested...
-if (isset($_SERVER['argc'])) {
-	$shell = TRUE;
-} else {
-	$shell = FALSE;
-}
-$out_sources = $dynamic->loadSources($shell);
+$out_sources = $dynamic->loadSources();
 foreach($out_sources AS $key => $value){ require_once($value); }
 
 //and get the plugin array ready...
