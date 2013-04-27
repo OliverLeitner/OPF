@@ -3,20 +3,17 @@
  main config data
  you can overwrite all these defines in your plugins
  */
-//base parms
-define('ADMIN_EMAIL','your@email.com');
-define('ADMIN_URL','/index.php?page=feed');
-define('ADMIN_LOGO','/tvguide/images/icon-35468_150.png');
-
 //database configuration values
-define('DB_TYPE', 'mysqli');
-define('DB_HOST', 'localhost');
-define('DB_USER', 'database_user');
-define('DB_PASSWORD', 'database_password');
-define('DB_PORT', 3306);
-define('DB_NAME', 'database_name');
+//you can change those within your plugin
+$config = array();
+$config["db_host"] = "localhost";
+$config["db_user"] = "database_user";
+$config["db_password"] = "database_password";
+$config["db_port"] = 3306;
+$config["db_name"] = "database_name";
+$config["db_type"] = "mysqli";
 
-//other settings
+//other settings that are global constants
 define('DEFAULT_STARTPAGE', 'home'); //page?=home is our starting page
 define('DEFAULT_CACHE', '../../cache/'); //where to store received raw data from sources
 define('DEFAULT_TIMEOUT', 600); //connection timeout for source grabbing

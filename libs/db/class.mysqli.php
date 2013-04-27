@@ -16,12 +16,12 @@ class DB {
 	 *
 	 * Building the Connection to our MySQL Database
 	 */
-	function __construct(){
+	function __construct($config){
 		if (DB::$initialized === false){
 			DB::$conn = mysqli_init();
 			DB::$conn->options(MYSQLI_INIT_COMMAND, 'SET NAMES \'utf8\'');
-			DB::$conn->real_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT, NULL, MYSQLI_CLIENT_FOUND_ROWS|MYSQLI_CLIENT_COMPRESS)
-			or die(Errors::returnError("db_no_connect",DB_NAME));
+			DB::$conn->real_connect($config["db_host"], $config["db_user"], $config["db_password"], $config["db_name"], $config["db_port"], NULL, MYSQLI_CLIENT_FOUND_ROWS|MYSQLI_CLIENT_COMPRESS)
+			or die(Errors::returnError("db_no_connect",$config["db_name"]));
 			DB::$conn->set_charset("utf8");
 			DB::$initialized = true;
 		}

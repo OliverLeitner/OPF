@@ -10,4 +10,9 @@ if(isset($_REQUEST["offset"])){
 } else {
 	$offset_set = 0;
 }
+
+//base parms
+define("ADMIN_EMAIL", 'Shadow333@gmail.com');
+define("ADMIN_URL", '/index.php?page=feed');
+define('ADMIN_LOGO', '/tvguide/images/icon-35468_150.png');
 ?>
