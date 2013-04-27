@@ -392,12 +392,12 @@ class DB {
 	function queryCountRows($field,$table){
 		$sql = "SELECT COUNT(".$field.") FROM ".$table;
 
-		if(!$res = DB::$conn->query($sql)){
-			die(Errors::returnError("db_wrong_countRows_statement",$sql));
-		}
+		$res = DB::$conn->query($sql);
 		
-		$row = $res->fetch_row();
-		return $row;
+		if($res != NULL) {
+			$row = $res->fetch_row();
+			return $row;
+		}
 	}
 
 	/**

@@ -123,9 +123,7 @@ class DB_CORE {
 	 * @return array $res				array[0] -> num rows in table
 	 */
 	public function getCountRows($field,$table,$dbcon){
-		if(!$res = $dbcon->queryCountRows($field,$table)){
-			die(Errors::returnError("db_misc_error",$table));
-		}
+		$res = $dbcon->queryCountRows($field,$table);
 		return $res;
 	}
 
