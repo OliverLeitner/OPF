@@ -19,7 +19,7 @@ A best practice yet simple PHP5 Framework, a few of many of the features are:
 8. In depth documentation: Basically everything is documented.
 
 A basic documentation is included within the source itself, just place the folder into the webdir of your
-webserver, no install needed, no extract needed, nothing to config first. just upload, open the url in your
+webserver, no install needed, nothing to config first. just upload, open the url in your
 favorite web browser, and get an idea what its about.
 
 for an in depth external documentation you can visit me here:
