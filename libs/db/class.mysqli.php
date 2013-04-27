@@ -8,8 +8,6 @@
  */
 namespace OPF\Database;
 class DB {
-
-	private static $initialized = false;
 	private static $conn = null;
 
 	/**
@@ -17,14 +15,11 @@ class DB {
 	 * Building the Connection to our MySQL Database
 	 */
 	function __construct($config){
-		if (DB::$initialized === false){
 			DB::$conn = mysqli_init();
 			DB::$conn->options(MYSQLI_INIT_COMMAND, 'SET NAMES \'utf8\'');
 			DB::$conn->real_connect($config["db_host"], $config["db_user"], $config["db_password"], $config["db_name"], $config["db_port"], NULL, MYSQLI_CLIENT_FOUND_ROWS|MYSQLI_CLIENT_COMPRESS)
 			or die(Errors::returnError("db_no_connect",$config["db_name"]));
 			DB::$conn->set_charset("utf8");
-			DB::$initialized = true;
-		}
 	}
 
 	/**
@@ -391,8 +386,8 @@ class DB {
 	 */
 	function queryCountRows($field,$table){
 		$sql = "SELECT COUNT(".$field.") FROM ".$table;
-
 		$res = DB::$conn->query($sql);
+
 		if($res){
 			$row = $res->fetch_row();
 			return $row;
