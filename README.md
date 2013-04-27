@@ -28,6 +28,9 @@ http://www.neverslair-blog.net/docs/opf/
 Got any questions? contact me here or via my website contact form:
 http://www.neverslair-blog.net/contact/contact-me/
 
+Project site including screenshots and instructions:
+http://www.neverslair-blog.net/projects/opf/
+
 Of course, like everyone who develops something, id love to know if you use it, and where you use it;-)
 
 greetings
