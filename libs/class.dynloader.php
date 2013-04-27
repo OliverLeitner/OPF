@@ -86,12 +86,16 @@ class dynamicLoader {
 	 * 
 	 * @return	array	$ret_src	Array of Sources
 	 */
-	public function loadSources(){
+	public function loadSources($shell=FALSE){
 		$sources = explode(",",DEFAULT_SOURCES);
 		
 		$ret_src = array();
 		foreach($sources AS $key => $value){
-			$ret_src[] = "libs/sources/class.".$value.".php";
+			if($shell === FALSE){
+				$ret_src[] = "libs/sources/class.".$value.".php";
+			} else {
+                                $ret_src[] = "../../libs/sources/class.".$value.".php";
+			}
 		}
 		return $ret_src;
 	}

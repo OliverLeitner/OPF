@@ -18,7 +18,7 @@ define('DB_NAME', 'database_name');
 
 //other settings
 define('DEFAULT_STARTPAGE', 'home'); //page?=home is our starting page
-define('DEFAULT_CACHE', '../cache/'); //where to store received raw data from sources
+define('DEFAULT_CACHE', '../../cache/'); //where to store received raw data from sources
 define('DEFAULT_TIMEOUT', 600); //connection timeout for source grabbing
 define('DEFAULT_DATE', strtotime("now -1 Day")); //current day and time and yaddah...
 define('DEFAULT_SOURCES', 'tvrage'); //currently implemented tvrage, others to follow...

@@ -62,9 +62,7 @@ class RAGE {
 		if(!$data = $con->feedCon($url)){
 			die(Errors::returnError("tvrage_details_error",""));
 		}
-		
-		unset($data);
-		return $out;
+		return $data;
 	}
 
 	/**
@@ -95,4 +93,8 @@ class RAGE {
 		return $xml;
 	}
 }
+
+//we just initialize it here, so we can dynamically
+//load it from our scripts...
+$source_con = new RAGE();
 ?>
