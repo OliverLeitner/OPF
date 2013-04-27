@@ -164,11 +164,11 @@ CREATE TABLE IF NOT EXISTS status_mm_series (
 		</p>
 		<pre>
 //database configuration values
-define(&quot;DB_NAME&quot;, &quot;database_name&quot;);
-define(&quot;DB_USER&quot;, &quot;database_username&quot;);
-define(&quot;DB_PASSWORD&quot;, &quot;database_password&quot;);
-define(&quot;DB_HOST&quot, &quot;localhost&quot;);
-define(&quot;DB_PORT&quot;, 3306);
+$config[&quot;db_host&quot;] = &quot;localhost&quot;;
+$config[&quot;db_user&quot;] = &quot;database_user&quot;;
+$config[&quot;db_password&quot;] = &quot;database_password&quot;;
+$config[&quot;db_port&quot;] = 3306;
+$config[&quot;db_name&quot;] = &quot;database_name&quot;;
 		</pre>
 	</li>
 	<li>
