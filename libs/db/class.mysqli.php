@@ -393,8 +393,7 @@ class DB {
 		$sql = "SELECT COUNT(".$field.") FROM ".$table;
 
 		$res = DB::$conn->query($sql);
-		
-		if($res != NULL) {
+		if($res){
 			$row = $res->fetch_row();
 			return $row;
 		}
