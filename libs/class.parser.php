@@ -57,7 +57,7 @@ class Parser {
 			fclose($fh);
 		}
 		if(!$array = explode("\n\n",$data)){
-			die(Errors::returnError("file_missing",$filename));
+			die(\OPF\Core\Errors::returnError("file_missing",$filename));
 		}
 		return $array;
 	}
@@ -89,7 +89,7 @@ class Parser {
 	public function fillRepeatingTemplate($db_con,$resArray,$template_main,$start_tag="<item>",$end_tag="</item>",$optData){
 		$returns = "";
 		if(!is_array($resArray) || empty($resArray) || !isset($resArray)){
-			die(Errors::returnError("template_error",""));
+			die(\OPF\Core\Errors::returnError("template_error",""));
 		}
 		
 		foreach($resArray AS $key => $value){
@@ -120,7 +120,7 @@ class Parser {
 	public function fillMainTemplate($infoArray,$subData,$template){
 		
 		if(!is_array($infoArray) || empty($infoArray) || !isset($infoArray)){
-			die(Errors::returnError("template_error",""));
+			die(\OPF\Core\Errors::returnError("template_error",""));
 		}
 		
 		foreach($infoArray AS $key => $value){
