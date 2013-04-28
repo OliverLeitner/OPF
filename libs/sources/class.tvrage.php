@@ -38,12 +38,12 @@ class RAGE {
 						}
 					}
 				} else {
-					die(Errors::returnError("invalid_data",""));
+					die(\OPF\Core\Errors::returnError("invalid_data",""));
 				}
 				$iter++;
 			}
 		} else {
-			die(Errors::returnError("no_data",""));
+			die(\OPF\Core\Errors::returnError("no_data",""));
 		}
 		
 		return $data_arr;
@@ -60,7 +60,7 @@ class RAGE {
 	 */
 	public function getGenre($url,$con){
 		if(!$data = $con->feedCon($url)){
-			die(Errors::returnError("tvrage_details_error",""));
+			die(\OPF\Core\Errors::returnError("tvrage_details_error",""));
 		}
 		return $data;
 	}
@@ -84,11 +84,11 @@ class RAGE {
 			}
 			$params = rtrim($params,"&");
 		} else {
-			die(Errors::returnError("no_data",""));
+			die(\OPF\Core\Errors::returnError("no_data",""));
 		}
 		
 		if(!$xml = $con->feedCon($url."?exact=1&".$params)){
-			die(Errors::returnError("tvrage_details_error",""));
+			die(\OPF\Core\Errors::returnError("tvrage_details_error",""));
 		}
 		return $xml;
 	}

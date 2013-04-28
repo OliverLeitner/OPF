@@ -25,10 +25,10 @@ class DB_CORE {
 	function setQuery($table,$dataarray,$wherearray,$dbcon,$type){
 		
 		if(!$table)
-			die(Errors::returnError("db_table_missing",""));
+			die(\OPF\Core\Errors::returnError("db_table_missing",""));
 			
 		if(!$dbcon)
-			die(Errors::returnError("db_invalid_conObj",""));
+			die(\OPF\Core\Errors::returnError("db_invalid_conObj",""));
 		
 		if(is_array($dataarray)){
 			if(isset($dataarray)){
@@ -38,7 +38,7 @@ class DB_CORE {
 				}
 			}
 		} else {
-			die(Errors::returnError("db_missing_data",$table));
+			die(\OPF\Core\Errors::returnError("db_missing_data",$table));
 		}
 		
 		if(is_array($wherearray)){
@@ -49,7 +49,7 @@ class DB_CORE {
 				}
 			}
 		} else {
-			die(Errors::returnError("db_malformed_where",$table));
+			die(\OPF\Core\Errors::returnError("db_malformed_where",$table));
 		}
 
 		if($type == "INSERT"){
@@ -57,7 +57,7 @@ class DB_CORE {
 		} else if($type == "UPDATE"){
 			$dbcon->queryUpdate($table,$data,$where);
 		} else {
-			die(Errors::returnError("db_wrong_setOPchoice",$type));
+			die(\OPF\Core\Errors::returnError("db_wrong_setOPchoice",$type));
 		}
 
 		//if INSERT we return insert ID
@@ -107,7 +107,7 @@ class DB_CORE {
 		} else if($type == "MM"){
 			$res = $dbcon->queryMMData($table,$fields,$keys,$where,$sqlAnds,$sqlOrs,$sortvalue,$sortorder,$group,$limit);
 		} else {
-			die(Errors::returnError("db_wrong_getOPchoice",$type));
+			die(\OPF\Core\Errors::returnError("db_wrong_getOPchoice",$type));
 		}
 		return $res;
 	}

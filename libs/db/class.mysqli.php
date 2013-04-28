@@ -144,7 +144,7 @@ class DB {
 		$data_sql = "SELECT SQL_NO_CACHE SQL_BIG_RESULT ".$sql_fields." FROM ".$maintable.$joins.$sql_where.$sql_and.$sql_or.$sql_order.$sql_group.$sql_limit;
 
 		if(!$res_browse = DB::$conn->query($data_sql)){
-			die(Errors::returnError("db_wrong_getQuery_statement",$data_sql));
+			die(\OPF\Core\Errors::returnError("db_wrong_getQuery_statement",$data_sql));
 		}
 
 		$returns = array();
@@ -177,9 +177,9 @@ class DB {
 		$fields = rtrim($fields,",");
 
 		$sql = $sql_start." (".$fields.") VALUES(".$values.")";
-		
+
 		if(!DB::$conn->query($sql)){
-			die(Errors::returnError("db_wrong_setQuery_statement",$sql));
+			die(\OPF\Core\Errors::returnError("db_wrong_setQuery_statement",$sql));
 		}
 		
 		$last_id = mysqli_insert_id(DB::$conn);
@@ -223,7 +223,7 @@ class DB {
 		$sql = $sql_start.$updater.$addWhere;
 
 		if(!DB::$conn->query($sql)){
-			die(Errors::returnError("db_wrong_setQuery_statement",$sql));
+			die(\OPF\Core\Errors::returnError("db_wrong_setQuery_statement",$sql));
 		}
 		
 		$last_id = mysqli_insert_id(DB::$conn);
@@ -292,7 +292,7 @@ class DB {
 		$sql = "SELECT ".$fieldlist." FROM ".$table.$addWhere.$addAnds.$addOrs;
 		
 		if(!$res = DB::$conn->query($sql)){
-			die(Errors::returnError("db_wrong_getQuery_statement",$sql));
+			die(\OPF\Core\Errors::returnError("db_wrong_getQuery_statement",$sql));
 		}
 		
 		$row = $res->fetch_row();
@@ -365,7 +365,7 @@ class DB {
 		$sql = "SELECT ".$fieldlist." FROM ".$table.$where_sql.$space.$addAnds.$space.$addOrs.$sort_sql;
 		
 		if(!$res = DB::$conn->query($sql)){
-			die(Errors::returnError("db_wrong_getQuery_statement",$sql));
+			die(\OPF\Core\Errors::returnError("db_wrong_getQuery_statement",$sql));
 		}
 		
 		$results = array();
