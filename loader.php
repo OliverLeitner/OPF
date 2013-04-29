@@ -15,11 +15,10 @@ require_once("libs/class.dynloader.php");
 
 //and we initialize everything...
 $errors = new OPF\Core\Errors($errorsArray);
-$db_con = new OPF\Database\DB($config);
-$db_core = new OPF\Database\DB_CORE();
 $parser = new OPF\Parsing\Parser();
 $data_con = new OPF\Core\CON();
 $dynamic = new OPF\Core\dynamicLoader();
+$db_core = new OPF\Database\DB_CORE($config);
 
 //include all sources as requested...
 $out_sources = $dynamic->loadSources();
