@@ -86,7 +86,7 @@ class Parser {
 	 *
 	 * @return string $returns	string containing the done template
 	 */
-	public function fillRepeatingTemplate($db_con,$resArray,$template_main,$start_tag="<item>",$end_tag="</item>",$optData){
+	public function fillRepeatingTemplate($resArray,$template_main,$start_tag="<item>",$end_tag="</item>",$optData){
 		$returns = "";
 		if(!is_array($resArray) || empty($resArray) || !isset($resArray)){
 			die(\OPF\Core\Errors::returnError("template_error",""));
