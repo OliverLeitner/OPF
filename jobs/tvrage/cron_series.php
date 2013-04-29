@@ -27,11 +27,11 @@ foreach($data_arr AS $key => $value){
 		array("seriesname"),
 		NULL,
 		array("seriesname" => addslashes($out_arr[3])),
-		NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+		NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 		);
 
 		if($check == ""){
-			$db_core->setQuery("series",array("seriesname" => addslashes($out_arr[3]),"serieslink" => addslashes($out_arr[5])),array(),$db_con,"INSERT");
+			$db_core->setQuery("series",array("seriesname" => addslashes($out_arr[3]),"serieslink" => addslashes($out_arr[5])),array(),"INSERT");
 		}
 	}
 }

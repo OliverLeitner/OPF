@@ -13,20 +13,19 @@ $templates = $dynamic->loadTemplates($plugin_name["tvrage"],$data_con);
 //creating the items for our template...
 if(isset($_REQUEST["genre"])){
 	//want a series by genre listing?
-	$results_series_genres = $db_core->getQuery($genrepmain,$gfields,$genrespkeys,$wherep,NULL,NULL,NULL,NULL,NULL,$limit,$db_con,"MM");
-	$out_entries = $parser->fillRepeatingTemplate($db_con,$results_series_genres,$templates["entry"],"<item>","</item>",NULL);
+	$results_series_genres = $db_core->getQuery($genrepmain,$gfields,$genrespkeys,$wherep,NULL,NULL,NULL,NULL,NULL,$limit,"MM");
+	$out_entries = $parser->fillRepeatingTemplate($results_series_genres,$templates["entry"],"<item>","</item>",NULL);
 } else if(isset($_REQUEST["q"])){
 	//search functionality here...
-	$results_items = $db_core->getQuery($maintable,$fieldset,$joinkeys,$where_search,$sqlAnds,$sqlOrs_search,$sort,NULL,NULL,$limit,$db_con,"MM");
+	$results_items = $db_core->getQuery($maintable,$fieldset,$joinkeys,$where_search,$sqlAnds,$sqlOrs_search,$sort,NULL,NULL,$limit,"MM");
 	$out_entries = "";
 	foreach($results_items AS $key => $value){
 		$genrewhere = array("episodes.seriesid" => " = ".$value["seriesid"]);
-		$results_genres = $db_core->getQuery($maintable,$genrefields,$genrekeys,$genrewhere,NULL,NULL,NULL,NULL,$genregroup,NULL,$db_con,"MM");
+		$results_genres = $db_core->getQuery($maintable,$genrefields,$genrekeys,$genrewhere,NULL,NULL,NULL,NULL,$genregroup,NULL,"MM");
 		$itemwhere = array("episodes.episodeid" => " = ".$value["episodeid"]);
-		$results_item_single = $db_core->getQuery($maintable,$fields,$joinkeys,$itemwhere,$sqlAnds,NULL,NULL,NULL,NULL,$limit,$db_con,"MM");
-		$out_genres = $parser->fillRepeatingTemplate($db_con,$results_genres,$templates["sub"],"<genre>","</genre>",NULL);
+		$results_item_single = $db_core->getQuery($maintable,$fields,$joinkeys,$itemwhere,$sqlAnds,NULL,NULL,NULL,NULL,$limit,"MM");
+		$out_genres = $parser->fillRepeatingTemplate($results_genres,$templates["sub"],"<genre>","</genre>",NULL);
 		$out_entries .= $parser->fillRepeatingTemplate(
-		$db_con,
 		$results_item_single,
 		$templates["entry"],
 			"<item>",
@@ -36,17 +35,15 @@ if(isset($_REQUEST["genre"])){
 	}
 } else {
 	//full feed display
-	$results_items = $db_core->getQuery($maintable,$fieldset,$joinkeys,$where,$sqlAnds,NULL,$sort,NULL,NULL,$limit,$db_con,"MM");
-
+	$results_items = $db_core->getQuery($maintable,$fieldset,$joinkeys,$where,$sqlAnds,NULL,$sort,NULL,NULL,$limit,"MM");
 	$out_entries = "";
 	foreach($results_items AS $key => $value){
 		$genrewhere = array("episodes.seriesid" => " = ".$value["seriesid"]);
-		$results_genres = $db_core->getQuery($maintable,$genrefields,$genrekeys,$genrewhere,NULL,NULL,NULL,NULL,$genregroup,NULL,$db_con,"MM");
+		$results_genres = $db_core->getQuery($maintable,$genrefields,$genrekeys,$genrewhere,NULL,NULL,NULL,NULL,$genregroup,NULL,"MM");
 		$itemwhere = array("episodes.episodeid" => " = ".$value["episodeid"]);
-		$results_item_single = $db_core->getQuery($maintable,$fields,$joinkeys,$itemwhere,$sqlAnds,NULL,NULL,NULL,NULL,$limit,$db_con,"MM");
-		$out_genres = $parser->fillRepeatingTemplate($db_con,$results_genres,$templates["sub"],"<genre>","</genre>",NULL);
+		$results_item_single = $db_core->getQuery($maintable,$fields,$joinkeys,$itemwhere,$sqlAnds,NULL,NULL,NULL,NULL,$limit,"MM");
+		$out_genres = $parser->fillRepeatingTemplate($results_genres,$templates["sub"],"<genre>","</genre>",NULL);
 		$out_entries .= $parser->fillRepeatingTemplate(
-		$db_con,
 		$results_item_single,
 		$templates["entry"],
 			"<item>",
@@ -57,7 +54,7 @@ if(isset($_REQUEST["genre"])){
 }
 
 //then we fill the maintemplate with the subtemplateentries and a few extras...
-$count_entries = $db_core->getCountRows("episodeid","episodes",$db_con);
+$count_entries = $db_core->getCountRows("episodeid","episodes");
 
 $arrValues = array(
 	"adm_mail" => ADMIN_EMAIL,

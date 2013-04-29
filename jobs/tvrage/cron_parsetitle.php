@@ -23,7 +23,7 @@ array(
 		"episodelength" => 0,
 		"episodesid" => 0
 ),
-NULL,NULL,NULL,NULL,NULL,$db_con,"FULL"
+NULL,NULL,NULL,NULL,NULL,"FULL"
 );
 
 foreach($data_array AS $row){
@@ -33,7 +33,7 @@ foreach($data_array AS $row){
 	array("seriesname"),
 	NULL,
 	array("seriesid" => addslashes($row[0])),
-	NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+	NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 	);
 
 	$xml = $source_con->getDetails(TVRAGE_DETAILS,array("show" => addslashes($seriesid[0]),"ep" => addslashes($row[1])),$data_con);
@@ -85,7 +85,7 @@ foreach($data_array AS $row){
 				array("genreid"),
 				NULL,
 				array("genrename" => addslashes(trim($genre[0]))),
-				NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				$series_row = $db_core->getQuery(
@@ -93,7 +93,7 @@ foreach($data_array AS $row){
 				array("seriesid"),
 				NULL,
 				array("seriesname" => addslashes($seriesid[0])),
-				NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				$check_mm = $db_core->getQuery(
@@ -102,23 +102,23 @@ foreach($data_array AS $row){
 				NULL,
 				array("seriesid" => addslashes($series_row[0])),
 				array("genreid" => addslashes($check_row[0])),
-				NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				if($check_mm == ""){
-					$db_core->setQuery("genres_mm_series",array("genreid" => addslashes($check_row[0]),"seriesid" => addslashes($series_row[0])),array(),$db_con,"INSERT");
+					$db_core->setQuery("genres_mm_series",array("genreid" => addslashes($check_row[0]),"seriesid" => addslashes($series_row[0])),array(),"INSERT");
 				}
 			}
 		}
 
 		if(isset($ep["title"][0])){
-			$db_core->setQuery("episodes",array("title" => addslashes($ep["title"][0])),array("episodeid" => addslashes($row[2])),$db_con,"UPDATE");
+			$db_core->setQuery("episodes",array("title" => addslashes($ep["title"][0])),array("episodeid" => addslashes($row[2])),"UPDATE");
 		}
 
 		if(isset($ep["url"][0])){
-			$db_core->setQuery("episodes",array("link" => addslashes($ep["url"][0])),array("episodeid" => addslashes($row[2])),$db_con,"UPDATE");
+			$db_core->setQuery("episodes",array("link" => addslashes($ep["url"][0])),array("episodeid" => addslashes($row[2])),"UPDATE");
 		} else {
-			$db_core->setQuery("episodes",array("link" => addslashes($ep["link"][0])),array("episodeid" => addslashes($row[2])),$db_con,"UPDATE");
+			$db_core->setQuery("episodes",array("link" => addslashes($ep["link"][0])),array("episodeid" => addslashes($row[2])),"UPDATE");
 		}
 
 		if(isset($ep["classification"][0])){
@@ -127,7 +127,7 @@ foreach($data_array AS $row){
 			array("seriesid"),
 			NULL,
 			array("seriesname" => addslashes($seriesid[0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			$check = $db_core->getQuery(
@@ -135,19 +135,19 @@ foreach($data_array AS $row){
 			array("classid"),
 			NULL,
 			array("classname" => addslashes($ep["classification"][0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			if($check == ""){
-				$ret_id = $db_core->setQuery("classes",array("classname" => addslashes($ep["classification"][0])),array(),$db_con,"INSERT");
-				$db_core->setQuery("classes_mm_series",array("classid" => addslashes($ret_id),"seriesid" => addslashes($series_row[0])),array(),$db_con,"INSERT");
+				$ret_id = $db_core->setQuery("classes",array("classname" => addslashes($ep["classification"][0])),array(),"INSERT");
+				$db_core->setQuery("classes_mm_series",array("classid" => addslashes($ret_id),"seriesid" => addslashes($series_row[0])),array(),"INSERT");
 			} else {
 				$ret_row = $db_core->getQuery(
 					"classes",
 				array("classid"),
 				NULL,
 				array("classname" => addslashes($ep["classification"][0])),
-				NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				$ret_check = $db_core->getQuery(
@@ -156,11 +156,11 @@ foreach($data_array AS $row){
 				NULL,
 				array("seriesid" => addslashes($series_row[0])),
 				array("classid" => addslashes($ret_row[0])),
-				NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				if($ret_check == ""){
-					$db_core->setQuery("classes_mm_series",array("classid" => addslashes($ret_row[0]),"seriesid" => addslashes($series_row[0])),array(),$db_con,"INSERT");
+					$db_core->setQuery("classes_mm_series",array("classid" => addslashes($ret_row[0]),"seriesid" => addslashes($series_row[0])),array(),"INSERT");
 				}
 			}
 		}
@@ -171,7 +171,7 @@ foreach($data_array AS $row){
 			array("seriesid"),
 			NULL,
 			array("seriesname" => addslashes($seriesid[0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			$check = $db_core->getQuery(
@@ -179,19 +179,19 @@ foreach($data_array AS $row){
 			array("countryid"),
 			NULL,
 			array("countryname" => addslashes($ep["country"][0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			if($check == ""){
-				$ret_id = $db_core->setQuery("country",array("countryname" => addslashes($ep["country"][0])),array(),$db_con,"INSERT");
-				$db_core->setQuery("country_mm_series",array("countryid" => addslashes($ret_id),"seriesid" => addslashes($series_row[0])),array(),$db_con,"INSERT");
+				$ret_id = $db_core->setQuery("country",array("countryname" => addslashes($ep["country"][0])),array(),"INSERT");
+				$db_core->setQuery("country_mm_series",array("countryid" => addslashes($ret_id),"seriesid" => addslashes($series_row[0])),array(),"INSERT");
 			} else {
 				$ret_row = $db_core->getQuery(
 					"country",
 				array("countryid"),
 				NULL,
 				array("countryname" => addslashes($ep["country"][0])),
-				NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				$ret_check = $db_core->getQuery(
@@ -200,11 +200,11 @@ foreach($data_array AS $row){
 				NULL,
 				array("seriesid" => addslashes($series_row[0])),
 				array("countryid" => addslashes($ret_row[0])),
-				NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				if($ret_check == ""){
-					$db_core->setQuery("country_mm_series",array("countryid" => addslashes($ret_row[0]),"seriesid" => addslashes($series_row[0])),array(),$db_con,"INSERT");
+					$db_core->setQuery("country_mm_series",array("countryid" => addslashes($ret_row[0]),"seriesid" => addslashes($series_row[0])),array(),"INSERT");
 				}
 			}
 		}
@@ -215,7 +215,7 @@ foreach($data_array AS $row){
 			array("seriesid"),
 			NULL,
 			array("seriesname" => addslashes($seriesid[0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			$check = $db_core->getQuery(
@@ -223,19 +223,19 @@ foreach($data_array AS $row){
 			array("statusid"),
 			NULL,
 			array("statusname" => addslashes($ep["status"][0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			if($check == ""){
-				$ret_id = $db_core->setQuery("status",array("statusname" => addslashes($ep["status"][0])),array(),$db_con,"INSERT");
-				$db_core->setQuery("status_mm_series",array("statusid" => addslashes($ret_id),"seriesid" => addslashes($series_row[0])),array(),$db_con,"INSERT");
+				$ret_id = $db_core->setQuery("status",array("statusname" => addslashes($ep["status"][0])),array(),"INSERT");
+				$db_core->setQuery("status_mm_series",array("statusid" => addslashes($ret_id),"seriesid" => addslashes($series_row[0])),array(),"INSERT");
 			} else {
 				$ret_row = $db_core->getQuery(
 					"status",
 				array("statusid"),
 				NULL,
 				array("statusname" => addslashes($ep["status"][0])),
-				NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				$ret_check = $db_core->getQuery(
@@ -244,17 +244,17 @@ foreach($data_array AS $row){
 				NULL,
 				array("seriesid" => addslashes($series_row[0])),
 				array("statusid" => addslashes($ret_row[0])),
-				NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				if($ret_check == ""){
-					$db_core->setQuery("status_mm_series",array("statusid" => addslashes($ret_row[0]),"seriesid" => addslashes($series_row[0])),array(),$db_con,"INSERT");
+					$db_core->setQuery("status_mm_series",array("statusid" => addslashes($ret_row[0]),"seriesid" => addslashes($series_row[0])),array(),"INSERT");
 				}
 			}
 		}
 
 		if(isset($ep["runtime"][0])){
-			$db_core->setQuery("episodes",array("episodelength" => addslashes($ep["runtime"][0])),array("episodeid" => addslashes($row[2])),$db_con,"UPDATE");
+			$db_core->setQuery("episodes",array("episodelength" => addslashes($ep["runtime"][0])),array("episodeid" => addslashes($row[2])),"UPDATE");
 		}
 
 		if(isset($ep["started"][0])){
@@ -263,9 +263,9 @@ foreach($data_array AS $row){
 			array("seriesid"),
 			NULL,
 			array("seriesname" => addslashes($seriesid[0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
-			$db_core->setQuery("series",array("startdate" => addslashes($ep["started"][0])),array("seriesid" => addslashes($series_row[0])),$db_con,"UPDATE");
+			$db_core->setQuery("series",array("startdate" => addslashes($ep["started"][0])),array("seriesid" => addslashes($series_row[0])),"UPDATE");
 		}
 
 		if(isset($ep["ended"][0])){
@@ -274,13 +274,13 @@ foreach($data_array AS $row){
 			array("seriesid"),
 			NULL,
 			array("seriesname" => addslashes($seriesid[0])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
-			$db_core->setQuery("series",array("enddate" => addslashes($ep["ended"][0])),array("seriesid" => addslashes($series_row[0])),$db_con,"UPDATE");
+			$db_core->setQuery("series",array("enddate" => addslashes($ep["ended"][0])),array("seriesid" => addslashes($series_row[0])),"UPDATE");
 		}
 
 		if(isset($ep["sid"][0])){
-			$db_core->setQuery("episodes",array("episodesid" => addslashes($ep["sid"][0])),array("episodeid" => addslashes($row[2])),$db_con,"UPDATE");
+			$db_core->setQuery("episodes",array("episodesid" => addslashes($ep["sid"][0])),array("episodeid" => addslashes($row[2])),"UPDATE");
 		}
 	}
 }

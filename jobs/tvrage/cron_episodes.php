@@ -24,7 +24,7 @@ foreach($data_arr AS $key => $value){
 		array("seriesid"),
 		NULL,
 		array("seriesname" => addslashes($out_arr[3])),
-		NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+		NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 		);
 
 		$check = $db_core->getQuery(
@@ -33,18 +33,18 @@ foreach($data_arr AS $key => $value){
 		NULL,
 		array("seriesid" => addslashes($row_seriesid[0])),
 		array("episodenum" => addslashes($out_arr[4])),
-		NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+		NULL,NULL,NULL,NULL,NULL,"SINGLE"
 		);
 
 		if(isset($row_seriesid[0]) && $check == ""){
-			$ret_id = $db_core->setQuery("episodes",array("episodenum" => addslashes($out_arr[4]),"seriesid" => addslashes($row_seriesid[0])),array(),$db_con,"INSERT");
+			$ret_id = $db_core->setQuery("episodes",array("episodenum" => addslashes($out_arr[4]),"seriesid" => addslashes($row_seriesid[0])),array(),"INSERT");
 			
 			$row = $db_core->getQuery(
 				"channels",
 			array("chanid"),
 			NULL,
 			array("channame" => addslashes($out_arr[2])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			$row_sched = $db_core->getQuery(
@@ -52,11 +52,11 @@ foreach($data_arr AS $key => $value){
 			array("scheduleid"),
 			NULL,
 			array("combined" => addslashes($out_arr[1])),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
-			$db_core->setQuery("channels_mm_episodes",array("chanid" => addslashes($row[0]),"episodeid" => addslashes($ret_id)),array(),$db_con,"INSERT");
-			$db_core->setQuery("schedules_mm_episodes",array("scheduleid" => addslashes($row_sched[0]),"episodeid" => addslashes($ret_id)),array(),$db_con,"INSERT");
+			$db_core->setQuery("channels_mm_episodes",array("chanid" => addslashes($row[0]),"episodeid" => addslashes($ret_id)),array(),"INSERT");
+			$db_core->setQuery("schedules_mm_episodes",array("scheduleid" => addslashes($row_sched[0]),"episodeid" => addslashes($ret_id)),array(),"INSERT");
 		}
 	}
 }

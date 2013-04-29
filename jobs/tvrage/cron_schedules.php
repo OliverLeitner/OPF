@@ -23,11 +23,11 @@ foreach($data_arr AS $key => $value){
 		array("combined"),
 		NULL,
 		array("combined" => addslashes($out_arr[1])),
-		NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+		NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 		);
 
 		if($check == ""){
-			$db_core->setQuery("schedules",array("combined" => addslashes($out_arr[1])),array(),$db_con,"INSERT");
+			$db_core->setQuery("schedules",array("combined" => addslashes($out_arr[1])),array(),"INSERT");
 		}
 	}
 }

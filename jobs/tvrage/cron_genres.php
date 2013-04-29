@@ -20,7 +20,6 @@ NULL, //sortvalue
 NULL, //sortorder
 NULL, //group
 NULL, //limit
-$db_con, //db
 	"FULL" //type
 );
 
@@ -37,11 +36,11 @@ foreach($data_array AS $row){
 				array("genrename"),
 				NULL,
 				array("genrename" => addslashes(trim($genre))),
-				NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+				NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 				);
 
 				if($check[0] == "" && trim($genre) != ""){
-					$db_core->setQuery("genres",array("genrename" => addslashes(trim($genre))),array(),$db_con,"INSERT");
+					$db_core->setQuery("genres",array("genrename" => addslashes(trim($genre))),array(),"INSERT");
 				}
 				unset($check);
 			}
@@ -51,11 +50,11 @@ foreach($data_array AS $row){
 			array("genrename"),
 			NULL,
 			array("genrename" => addslashes(trim($out[1][0]))),
-			NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+			NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 			);
 
 			if($check[0] == "" && trim($out[1][0]) != ""){
-				$db_core->setQuery("genres",array("genrename" => addslashes(trim($out[1][0]))),array(),$db_con,"INSERT");
+				$db_core->setQuery("genres",array("genrename" => addslashes(trim($out[1][0]))),array(),"INSERT");
 			}
 			unset($check);
 		} else {

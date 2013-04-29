@@ -4,7 +4,6 @@
  or maybe overwrite existing functionality?
  if you dont want to, leave it just like it is.
  */
-
 /*	advanced table query parameters main part	*/
 $fields = array("*"); //we want to fetch all fields of the result set
 $where = array("combined" => " > ".DEFAULT_DATE); //everything after now, just get whats coming up on tv

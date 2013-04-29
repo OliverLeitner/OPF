@@ -5,6 +5,7 @@
  plugin, here we can influence
  how our actual pages are named etc...
  */
+ini_set("display_errors","On");
 
 //first we define our current name...
 $plugin_name["tvrage"] = "tvrage";

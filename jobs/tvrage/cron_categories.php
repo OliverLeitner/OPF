@@ -24,11 +24,11 @@ foreach($data_arr AS $key => $value){
 		array("channame"),
 		NULL,
 		array("channame" => addslashes($out_arr[2])),
-		NULL,NULL,NULL,NULL,NULL,NULL,$db_con,"SINGLE"
+		NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 		);
 
 		if($check == ""){
-			$db_core->setQuery("channels",array("channame" => $out_arr[2]),array(),$db_con,"INSERT");
+			$db_core->setQuery("channels",array("channame" => $out_arr[2]),array(),"INSERT");
 		}
 	}
 }

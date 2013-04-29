@@ -14,7 +14,6 @@ array("values" => "channame"), //sortparms
 	"ASC", //sortorder
 NULL, //group
 NULL, //limit
-$db_con, //dbcon
 	"FULL" //functiontype
 );
 
@@ -27,7 +26,7 @@ NULL,
 NULL,
 array("values" => "countryname"),
 	"ASC",
-NULL,NULL,$db_con,"FULL"
+NULL,NULL,"FULL"
 );
 
 $series = $db_core->getQuery(
@@ -39,7 +38,7 @@ NULL,
 NULL,
 array("values" => "seriesname"),
 	"ASC",
-NULL,NULL,$db_con,"FULL"
+NULL,NULL,"FULL"
 );
 
 $classes = $db_core->getQuery(
@@ -51,7 +50,7 @@ NULL,
 NULL,
 array("values" => "classname"),
 	"ASC",
-NULL,NULL,$db_con,"FULL"
+NULL,NULL,"FULL"
 );
 
 $statuses = $db_core->getQuery(
@@ -63,7 +62,7 @@ NULL,
 NULL,
 array("values" => "statusname"),
 	"ASC",
-NULL,NULL,$db_con,"FULL"
+NULL,NULL,"FULL"
 );
 
 $out = '
@@ -84,7 +83,7 @@ $out = '
 ';
 
 foreach($channels AS $key => $channel){
-	$out .= '<li><a href="index.php?page=feed&channel='.$db_con->escape_string($channel[1]).'" >'.$channel[1].'</a></li>';
+	$out .= '<li><a href="index.php?page=feed&channel='.$db_core->escape_string($channel[1]).'" >'.$channel[1].'</a></li>';
 }
 
 $out .= '
@@ -95,7 +94,7 @@ $out .= '
 <ul>';
 
 foreach($countries AS $key => $country){
-	$out .= '<li><a href="index.php?page=feed&country='.$db_con->escape_string($country[1]).'" >'.$country[1].'</a></li>';
+	$out .= '<li><a href="index.php?page=feed&country='.$db_core->escape_string($country[1]).'" >'.$country[1].'</a></li>';
 }
 
 $out .= '</ul>
@@ -106,7 +105,7 @@ $out .= '</ul>
 
 foreach($series AS $key => $serie){
 	if($serie[1] != ""){
-		$out .= '<li><a href="index.php?page=feed&series='.urlencode($db_con->escape_string($serie[1])).'" >'.utf8_decode(trim($serie[1])).'</a></li>';
+		$out .= '<li><a href="index.php?page=feed&series='.urlencode($db_core->escape_string($serie[1])).'" >'.utf8_decode(trim($serie[1])).'</a></li>';
 	} else {
 		$out .= '<li>'.$serie[1].'</li>';
 	}
@@ -120,7 +119,7 @@ $out .= '</ul>
 
 foreach($classes AS $key => $classification){
 	if($classification[1] != ""){
-		$out .= '<li><a href="index.php?page=feed&class='.urlencode($db_con->escape_string($classification[1])).'" >'.utf8_decode(trim($classification[1])).'</a></li>';
+		$out .= '<li><a href="index.php?page=feed&class='.urlencode($db_core->escape_string($classification[1])).'" >'.utf8_decode(trim($classification[1])).'</a></li>';
 	} else {
 		$out .= '<li>'.$classification[1].'</li>';
 	}
@@ -134,7 +133,7 @@ $out .= '</ul>
 
 foreach($statuses AS $key => $status){
 	if($status[1] != ""){
-		$out .= '<li><a href="index.php?page=feed&status='.urlencode($db_con->escape_string($status[1])).'" >'.utf8_decode(trim($status[1])).'</a></li>';
+		$out .= '<li><a href="index.php?page=feed&status='.urlencode($db_core->escape_string($status[1])).'" >'.utf8_decode(trim($status[1])).'</a></li>';
 	} else {
 		$out .= '<li>'.$status[1].'</li>';
 	}

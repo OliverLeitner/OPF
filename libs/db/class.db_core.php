@@ -9,6 +9,13 @@
  */
 namespace OPF\Database;
 class DB_CORE {
+	
+	//creates the data connection
+	private static $dbcon = null;
+	
+	function __construct($config){
+		DB_CORE::$dbcon = new DB($config); 
+	}
 
 	/**
 	 *
@@ -22,13 +29,10 @@ class DB_CORE {
 	 *
 	 * @return int	 $ret_id			returns the id of the successful INSERT
 	 */
-	function setQuery($table,$dataarray,$wherearray,$dbcon,$type){
+	function setQuery($table,$dataarray,$wherearray,$type){
 		
 		if(!$table)
 			die(\OPF\Core\Errors::returnError("db_table_missing",""));
-			
-		if(!$dbcon)
-			die(\OPF\Core\Errors::returnError("db_invalid_conObj",""));
 		
 		if(is_array($dataarray)){
 			if(isset($dataarray)){
@@ -53,9 +57,9 @@ class DB_CORE {
 		}
 
 		if($type == "INSERT"){
-			$ret_id = $dbcon->queryInsert($table,$data);
+			$ret_id = DB_CORE::$dbcon->queryInsert($table,$data);
 		} else if($type == "UPDATE"){
-			$dbcon->queryUpdate($table,$data,$where);
+			DB_CORE::$dbcon->queryUpdate($table,$data,$where);
 		} else {
 			die(\OPF\Core\Errors::returnError("db_wrong_setOPchoice",$type));
 		}
@@ -84,7 +88,7 @@ class DB_CORE {
 	 *
 	 * @return array $res					Database rows
 	 */
-	function getQuery($table,$fields,$keys,$where,$sqlAnds,$sqlOrs,$sortparms,$sortorder,$group,$limit,$dbcon,$type="SINGLE"){
+	function getQuery($table,$fields,$keys,$where,$sqlAnds,$sqlOrs,$sortparms,$sortorder,$group,$limit,$type="SINGLE"){
 		if(isset($sortparms)){
 			$sortvalue = $sortparms["values"];
 		} else {
@@ -101,11 +105,11 @@ class DB_CORE {
 		}
 
 		if($type == "SINGLE"){
-			$res = $dbcon->querySingleRow($table,$fieldset,$where,$sqlAnds,$sqlOrs);
+			$res = DB_CORE::$dbcon->querySingleRow($table,$fieldset,$where,$sqlAnds,$sqlOrs);
 		} else if($type == "FULL"){
-			$res = $dbcon->queryFullData($table,$fieldset,$where,$sqlAnds,$sqlOrs,$sortvalue,$sortorder);
+			$res = DB_CORE::$dbcon->queryFullData($table,$fieldset,$where,$sqlAnds,$sqlOrs,$sortvalue,$sortorder);
 		} else if($type == "MM"){
-			$res = $dbcon->queryMMData($table,$fields,$keys,$where,$sqlAnds,$sqlOrs,$sortvalue,$sortorder,$group,$limit);
+			$res = DB_CORE::$dbcon->queryMMData($table,$fields,$keys,$where,$sqlAnds,$sqlOrs,$sortvalue,$sortorder,$group,$limit);
 		} else {
 			die(\OPF\Core\Errors::returnError("db_wrong_getOPchoice",$type));
 		}
@@ -122,8 +126,8 @@ class DB_CORE {
 	 *
 	 * @return array $res				array[0] -> num rows in table
 	 */
-	public function getCountRows($field,$table,$dbcon){
-		$res = $dbcon->queryCountRows($field,$table);
+	public function getCountRows($field,$table){
+		$res = DB_CORE::$dbcon->queryCountRows($field,$table);
 		return $res;
 	}
 
@@ -136,9 +140,9 @@ class DB_CORE {
 	 *
 	 * @return string					The cleaned string ready for insert/update
 	 */
-	public function escape_string($string,$dbcon){
+	public function escape_string($string){
 		if($string != ""){
-			$res = $dbcon->escape_string($string);
+			$res = DB_CORE::$dbcon->escape_string($string);
 			return $res;
 		}
 	}
