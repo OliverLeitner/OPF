@@ -402,7 +402,7 @@ class DB {
 	 *
 	 * @return	string $resultstring	the cleaned string
 	 */
-	function escape_string($string){
+	function escape($string){
 		$resultstring = DB::$conn->real_escape_string($string);
 		return $resultstring;
 	}

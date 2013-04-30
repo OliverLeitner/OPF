@@ -5,7 +5,7 @@
  * @author Oliver Leitner <Shadow333[AT]gmail.com>
  *
  */
-namespace OPF\Core;
+namespace OPF\Parsing;
 class CON {
 	private static $_ctx = null;
 
@@ -31,7 +31,7 @@ class CON {
 	 */
 	public function feedCon($url){
 		if(!$results = file_get_contents($url,0,CON::$_ctx)){
-			die(Errors::returnError("url_no_connect",$url));
+			die(\OPF\Core\Errors::returnError("url_no_connect",$url));
 		}
 		return $results;
 	}

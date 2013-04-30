@@ -9,7 +9,7 @@ define('TVRAGE_FEED','http://services.tvrage.com/tools/quickschedule.php');
 define('TVRAGE_DETAILS','http://services.tvrage.com/feeds/episodeinfo.php');
 define('TVRAGE_COUNTRY', 'USA');
 
-class RAGE {
+class RAGE extends \OPF\Parsing\CON {
 
 	/**
 	 *
@@ -58,8 +58,8 @@ class RAGE {
 	 *
 	 * @return string $out			The Genre
 	 */
-	public function getGenre($url,$con){
-		if(!$data = $con->feedCon($url)){
+	public function getGenre($url){
+		if(!$data = $this->feedCon($url)){
 			die(\OPF\Core\Errors::returnError("tvrage_details_error",""));
 		}
 		return $data;
@@ -75,7 +75,7 @@ class RAGE {
 	 *
 	 * @return object $xml				XML Dump of tvrage details
 	 */
-	public function getDetails($url,$paramsArr,$con){
+	public function getDetails($url,$paramsArr){
 		$params = "";
 		
 		if(is_array($paramsArr)){
@@ -84,11 +84,11 @@ class RAGE {
 			}
 			$params = rtrim($params,"&");
 		} else {
-			die(\OPF\Core\Errors::returnError("no_data",""));
+			print(\OPF\Core\Errors::returnError("no_data",""));
 		}
 		
-		if(!$xml = $con->feedCon($url."?exact=1&".$params)){
-			die(\OPF\Core\Errors::returnError("tvrage_details_error",""));
+		if(!$xml = $this->feedCon($url."?exact=1&".$params)){
+			print(\OPF\Core\Errors::returnError("tvrage_details_error",""));
 		}
 		return $xml;
 	}

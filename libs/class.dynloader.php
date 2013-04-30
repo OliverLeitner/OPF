@@ -9,7 +9,7 @@
  *
  */
 namespace OPF\Core;
-class dynamicLoader {
+class dynamicLoader extends \OPF\Parsing\CON {
 
 	/**
 	 *
@@ -19,16 +19,13 @@ class dynamicLoader {
 	 *
 	 * @return array $templates	an array with our templates
 	 */
-	public function loadTemplates($plugin,$data_con){
+	public function loadTemplates($plugin){
 
 		if(!is_dir("plugins/".$plugin."/templates"))
 			die(Errors::returnError("no_such_directory",$plugin."/templates"));
 		
 		if(!$plugin)
 			die(Errors::returnError("plugin_missing",$plugin));
-			
-		if(!$data_con)
-			die(Errors::returnError("url_no_connect",""));
 
 		$dir = "plugins/".$plugin."/templates";
 		$files = array_diff(scandir($dir), array("..","."));
@@ -39,7 +36,7 @@ class dynamicLoader {
 			foreach($files AS $key => $file){
 				$naming_array = explode(".",$file);
 				$tname = $naming_array[0];
-				$templates[$tname] = $data_con->feedCon("plugins/".$plugin."/templates/".$file);
+				$templates[$tname] = $this->feedCon("plugins/".$plugin."/templates/".$file);
 			}
 			return $templates;
 		} else {

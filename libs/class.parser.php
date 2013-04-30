@@ -6,7 +6,7 @@
  *
  */
 namespace OPF\Parsing;
-class Parser {
+class Parser extends CON {
 
 	/**
 	 * 
@@ -43,11 +43,11 @@ class Parser {
 	 *
 	 * @return array	$array		file data as array
 	 */
-	public function getFileArray($feedurl,$filename,$data_con){
+	public function getFileArray($feedurl,$filename){
 		$filename = DEFAULT_CACHE.$filename;
 
 		if(!file_exists($filename)){
-			$data = $data_con->feedCon($feedurl);
+			$data = $this->feedCon($feedurl);
 			$fh = fopen($filename,"w");
 			fwrite($fh,$data);
 			fclose($fh);

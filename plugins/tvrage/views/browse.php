@@ -8,7 +8,7 @@ $out_includes = $dynamic->loadHooks("tvrage");
 foreach($out_includes AS $key => $value){ require_once($value); }
 
 //loading our plugins templates...
-$templates = $dynamic->loadTemplates($plugin_name["tvrage"],$data_con);
+$templates = $dynamic->loadTemplates($plugin_name["tvrage"]);
 
 //creating the items for our template...
 if(isset($_REQUEST["genre"])){

@@ -7,7 +7,7 @@
  * if you want php error display you
  * can always enable it within your plugin.php
  */
-ini_set("display_errors","Off");
+ini_set("display_errors","On");
 
 //avoid XSS
 if(isset($_REQUEST)){

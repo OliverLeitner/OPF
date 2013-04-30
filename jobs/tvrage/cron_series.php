@@ -15,7 +15,7 @@ libxml_use_internal_errors(true);
 require_once("../../loader.php");
 
 $filename = "tvrage_data.xml";
-$sub_arr = $parser->getFileArray(TVRAGE_FEED,$filename,$data_con);
+$sub_arr = $parser->getFileArray(TVRAGE_FEED,$filename);
 $data_arr = $source_con->parseQuickData($sub_arr);
 
 foreach($data_arr AS $key => $value){

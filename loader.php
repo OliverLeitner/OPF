@@ -9,14 +9,13 @@ require_once("language/".DEFAULT_LANG."/errors.php");
 require_once("libs/class.errorhandler.php");
 require_once("libs/db/class.".$config["db_type"].".php");
 require_once("libs/db/class.db_core.php");
-require_once("libs/class.parser.php");
 require_once("libs/class.datacon.php");
+require_once("libs/class.parser.php");
 require_once("libs/class.dynloader.php");
 
 //and we initialize everything...
 $errors = new OPF\Core\Errors($errorsArray);
 $parser = new OPF\Parsing\Parser();
-$data_con = new OPF\Core\CON();
 $dynamic = new OPF\Core\dynamicLoader();
 $db_core = new OPF\Database\DB_CORE($config);
 

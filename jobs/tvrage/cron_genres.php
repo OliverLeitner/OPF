@@ -25,7 +25,7 @@ NULL, //limit
 
 foreach($data_array AS $row){
 	set_time_limit(0);
-	$out = $source_con->getGenre($row[0],$data_con);
+	$out = $source_con->getGenre($row[0]);
 	if(is_array($out) && isset($out[1][0])){
 		$pos = strpos($out[1][0], "|");
 		if($pos !== false){

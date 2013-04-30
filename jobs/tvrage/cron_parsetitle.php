@@ -36,7 +36,7 @@ foreach($data_array AS $row){
 	NULL,NULL,NULL,NULL,NULL,NULL,"SINGLE"
 	);
 
-	$xml = $source_con->getDetails(TVRAGE_DETAILS,array("show" => addslashes($seriesid[0]),"ep" => addslashes($row[1])),$data_con);
+	$xml = $source_con->getDetails(TVRAGE_DETAILS,array("show" => addslashes($seriesid[0]),"ep" => addslashes($row[1])));
 
 	//and if it contains something of sense, we write it out.
 	if($xml){
