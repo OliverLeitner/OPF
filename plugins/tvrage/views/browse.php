@@ -65,7 +65,7 @@ $arrValues = array(
 	"current_offset" => $limit["offset"]
 );
 
-$output = $parser->fillMainTemplate($arrValues,$out_entries,$templates["body"]);
+$output = $parser->fillMainTemplate($arrValues,$templates["body"],$out_entries);
 
 //and the output part.
 //call is ?page=$arraykey (in our case ?page=feed)
