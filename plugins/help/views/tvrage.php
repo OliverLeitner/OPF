@@ -3,7 +3,7 @@
 *  the plugin development documentation...
 */
 //loading our plugins templates...
-$templates = $dynamic->loadTemplates($plugin_name["help"],$data_con);
+$templates = $dynamic->loadTemplates($plugin_name["help"]);
 
 //content filling...
 $output = array();
@@ -211,7 +211,7 @@ $config[&quot;db_name&quot;] = &quot;database_name&quot;;
 ';
 
 //and parse the output to the template
-$output = $parser->fillMainTemplate($output,NULL,$templates["body"]);
+$output = $parser->fillMainTemplate($output,$templates["body"]);
 
 //and we put the output out...
 $page = array();

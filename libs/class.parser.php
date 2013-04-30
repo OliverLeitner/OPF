@@ -86,7 +86,7 @@ class Parser extends CON {
 	 *
 	 * @return string $returns	string containing the done template
 	 */
-	public function fillRepeatingTemplate($resArray,$template_main,$start_tag="<item>",$end_tag="</item>",$optData){
+	public function fillRepeatingTemplate($resArray,$template_main,$start_tag="<item>",$end_tag="</item>",$optData=""){
 		$returns = "";
 		if(!is_array($resArray) || empty($resArray) || !isset($resArray)){
 			die(\OPF\Core\Errors::returnError("template_error",""));
@@ -117,7 +117,7 @@ class Parser extends CON {
 	 *
 	 * @return string	$template	the done master template
 	 */
-	public function fillMainTemplate($infoArray,$subData,$template){
+	public function fillMainTemplate($infoArray,$template,$subData=""){
 		
 		if(!is_array($infoArray) || empty($infoArray) || !isset($infoArray)){
 			die(\OPF\Core\Errors::returnError("template_error",""));

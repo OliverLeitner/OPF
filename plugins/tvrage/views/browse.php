@@ -14,7 +14,7 @@ $templates = $dynamic->loadTemplates($plugin_name["tvrage"]);
 if(isset($_REQUEST["genre"])){
 	//want a series by genre listing?
 	$results_series_genres = $db_core->getQuery($genrepmain,$gfields,$genrespkeys,$wherep,NULL,NULL,NULL,NULL,NULL,$limit,"MM");
-	$out_entries = $parser->fillRepeatingTemplate($results_series_genres,$templates["entry"],"<item>","</item>",NULL);
+	$out_entries = $parser->fillRepeatingTemplate($results_series_genres,$templates["entry"],"<item>","</item>");
 } else if(isset($_REQUEST["q"])){
 	//search functionality here...
 	$results_items = $db_core->getQuery($maintable,$fieldset,$joinkeys,$where_search,$sqlAnds,$sqlOrs_search,$sort,NULL,NULL,$limit,"MM");
@@ -24,7 +24,7 @@ if(isset($_REQUEST["genre"])){
 		$results_genres = $db_core->getQuery($maintable,$genrefields,$genrekeys,$genrewhere,NULL,NULL,NULL,NULL,$genregroup,NULL,"MM");
 		$itemwhere = array("episodes.episodeid" => " = ".$value["episodeid"]);
 		$results_item_single = $db_core->getQuery($maintable,$fields,$joinkeys,$itemwhere,$sqlAnds,NULL,NULL,NULL,NULL,$limit,"MM");
-		$out_genres = $parser->fillRepeatingTemplate($results_genres,$templates["sub"],"<genre>","</genre>",NULL);
+		$out_genres = $parser->fillRepeatingTemplate($results_genres,$templates["sub"],"<genre>","</genre>");
 		$out_entries .= $parser->fillRepeatingTemplate(
 		$results_item_single,
 		$templates["entry"],
@@ -42,7 +42,7 @@ if(isset($_REQUEST["genre"])){
 		$results_genres = $db_core->getQuery($maintable,$genrefields,$genrekeys,$genrewhere,NULL,NULL,NULL,NULL,$genregroup,NULL,"MM");
 		$itemwhere = array("episodes.episodeid" => " = ".$value["episodeid"]);
 		$results_item_single = $db_core->getQuery($maintable,$fields,$joinkeys,$itemwhere,$sqlAnds,NULL,NULL,NULL,NULL,$limit,"MM");
-		$out_genres = $parser->fillRepeatingTemplate($results_genres,$templates["sub"],"<genre>","</genre>",NULL);
+		$out_genres = $parser->fillRepeatingTemplate($results_genres,$templates["sub"],"<genre>","</genre>");
 		$out_entries .= $parser->fillRepeatingTemplate(
 		$results_item_single,
 		$templates["entry"],

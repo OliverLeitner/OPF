@@ -4,7 +4,7 @@
 //call is ?page=$arraykey (in our case ?page=home)
 
 //loading our plugins templates...
-$templates = $dynamic->loadTemplates($plugin_name["help"],$data_con);
+$templates = $dynamic->loadTemplates($plugin_name["help"]);
 
 //this is the homepage of our project, some simple
 //description with a knowledgebase in the background.
@@ -54,7 +54,7 @@ $output["content"] = '
 
 
 //and parse the output to the template
-$output = $parser->fillMainTemplate($output,NULL,$templates["body"]);
+$output = $parser->fillMainTemplate($output,$templates["body"]);
 
 //and we put the output out...
 $page = array();
