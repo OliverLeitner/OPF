@@ -31,6 +31,10 @@ http://www.neverslair-blog.net/contact/contact-me/
 Project site including screenshots and instructions:
 http://www.neverslair-blog.net/projects/opf/
 
+If you are interrested to see some additional plugin examples have a look into the OPF plugin
+repository:
+https://github.com/OliverLeitner/OPF_plugins
+
 Of course, like everyone who develops something, id love to know if you use it, and where you use it;-)
 
 greetings
